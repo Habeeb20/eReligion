@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import im from "../assets/img3.png"
+import { Link } from 'react-router-dom';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,9 +16,9 @@ const Login = () => {
     try {
       const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/users/login`, { email, password });
       const { token } = res.data;
-      localStorage.setItem('token', token); // Save the token
+      localStorage.setItem('token', token); 
       toast.success("successful")
-      navigate('/profile'); // Navigate to profile or other protected route
+      navigate('/profile'); 
      
     } catch (err) {
       console.log(err)
@@ -59,7 +60,10 @@ const Login = () => {
         <button type="submit" className="w-full bg-blue-900 text-white p-2 rounded mt-4 hover:bg-indigo-600">
           Login
         </button>
+        <Link to='/register'><h4 className='p-3 hover:text-indigo-800'>Don't have an account? sign up</h4></Link>
+        <Link to='/ministerlogin'><h4 className='p-3 hover:text-indigo-500'>Log in as a minister?</h4></Link>
       </form>
+    
     </div>
   );
 };

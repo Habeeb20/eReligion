@@ -7,7 +7,7 @@ import Land3 from '../component/Land3'
 function Home() {
   return (
     <div>
-      <Navbar />
+
       <Land1 />
       <Land2 />
       <Land3 />

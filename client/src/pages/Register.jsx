@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import im from '../assets/img3.png'
+import im from '../assets/img3.png';
+import { Link } from 'react-router-dom';
 const Register = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -183,6 +184,7 @@ const Register = () => {
         <button type="submit" className="w-full bg-blue-900 text-white p-2 rounded mt-4 hover:bg-indigo-700">
           Register
         </button>
+        <Link to='/login'><h4 className='p-3 hover:text-indigo-800'>Already have an account? sign in</h4></Link>
       </form>
     </div>
   );

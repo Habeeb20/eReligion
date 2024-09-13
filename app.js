@@ -8,9 +8,10 @@ dotenv.config();
 import { ExpressPeerServer } from 'peer';
 import { createServer } from 'http';
 import router from './routes/ministerRoute.js';
+import path from 'path';
 
 
-
+const __dirname = path.resolve()
 
 const app = express();
 const server = createServer(app);
@@ -25,6 +26,17 @@ const peerServer = ExpressPeerServer(server, {
 app.use('/peerjs', peerServer);
 
 
+app.use((err, req, res, next) => {
+    const statusCode = err.statusCode || 500;
+    const message = err.message || 'internal Server Error';
+    return res.status(statusCode).json({
+        message,
+    });
+})
+
+
+
+app.use(express.static(path.join(__dirname, '/client/dist')))
 
 // Establish database connection
 const startServer = async () => {
@@ -49,3 +61,6 @@ const startServer = async () => {
 };
 
 startServer();
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'))
+})
