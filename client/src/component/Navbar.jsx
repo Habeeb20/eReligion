@@ -15,9 +15,9 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-indigo-900 text-white">
-      <div className="container mx-auto flex justify-between items-center py-4 px-6">
-        <h1 className="text-2xl font-bolder text-white">e-religion</h1>
+    <nav className="bg-indigo-900 text-white fixed top-0 w-full z-50 shadow-lg">
+      <div className="container mx-auto flex justify-between items-center py-1 px-6">
+        <h1 className="text-2xl font-bold text-white">e-religion</h1>
 
         {/* Mobile hamburger menu */}
         <button
@@ -25,7 +25,12 @@ const Navbar = () => {
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle navigation"
         >
-          {isOpen ? 'Close' : 'Menu'}
+          {/* Hamburger icon */}
+          <div className="space-y-1">
+            <span className="block w-6 h-0.5 bg-white"></span>
+            <span className="block w-6 h-0.5 bg-white"></span>
+            <span className="block w-6 h-0.5 bg-white"></span>
+          </div>
         </button>
 
         {/* Desktop Menu */}
@@ -47,7 +52,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu (toggleable) */}
       {isOpen && (
         <div className="md:hidden flex flex-col bg-indigo-900 px-6 space-y-2 pb-4">
           {navItems.map((item) => (
@@ -57,9 +62,12 @@ const Navbar = () => {
               className={`py-2 px-4 rounded ${
                 activePage === item.name
                   ? 'bg-white text-black'
-                  : 'text-black hover:bg-white hover:text-black'
+                  : 'text-white hover:bg-white hover:text-black'
               }`}
-              onClick={() => setActivePage(item.name)}
+              onClick={() => {
+                setActivePage(item.name);
+                setIsOpen(false); // Close the menu after selecting a page
+              }}
             >
               {item.name}
             </Link>

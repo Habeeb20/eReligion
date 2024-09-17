@@ -1,28 +1,10 @@
-// import express from 'express';
-// import { registerUser, loginUser, getUserProfile, updateUserProfile, becomeMinister } from '../controllers/userController.js';
-// import { protect } from '../middleware/authMiddleware.js';
-
-// const router = express.Router();
-
-// // Register new user
-// router.post('/register', registerUser);
-
-// // Login user
-// router.post('/login', loginUser);
-
-// // Get and update user profile
-// router.route('/profile').get(protect, getUserProfile).put(protect, updateUserProfile);
-
-// // Become a minister
-// router.put('/become-minister', protect, becomeMinister);
-
-// export default router;
-
-
 import express from "express"
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 import User from "../models/userModel.js"
+import nodemailer from "nodemailer"
+import crypto from 'crypto';
+import Appointment from "../models/appointmentSchema.js"
 const router = express.Router();
 // Register User
 router.post('/register', async (req, res) => {
@@ -118,6 +100,111 @@ router.put('/profile', verifyToken, async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
+
+
+// //get all users
+router.get('/all', async (req, res) => {
+  try {
+    const users = await User.find();  
+    res.status(200).json(users);  
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'An error occurred' }); 
+  }
+});
+
+router.get('/appointments/user/:userId', async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    // Use `find` to get all appointments for a specific user
+    const appointments = await Appointment.find({ user: userId });
+    
+    // Check if there are appointments found for the user
+    if (!appointments || appointments.length === 0) {
+      console.log("the error is here")
+      return res.status(404).json({ error: 'No appointments found for this user' });
+    }
+
+    res.status(200).json(appointments);
+  } catch (error) {
+    console.log(error)
+    res.status(400).json({ error: error.message });
+  }
+});
+
+
+
+
+// Step 1: Send reset password email
+router.post('/forgot-password',  async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Generate a reset token
+    const resetToken = crypto.randomBytes(32).toString('hex');
+    const resetPasswordToken = jwt.sign({ resetToken }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+    // Send an email with the reset link
+    const resetLink = `${process.env.FRONTEND_URL}/reset-password/${resetPasswordToken}`;
+
+    // Setup Nodemailer
+    const transporter = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: user.email,
+      subject: 'Password Reset',
+      text: `You requested a password reset. Click the link below to reset your password: \n\n ${resetLink}`,
+    };
+
+    await transporter.sendMail(mailOptions);
+    
+    res.status(200).json({ message: 'Password reset email sent successfully' });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Step 2: Handle password reset
+router.post('/reset-password/:token', async (req, res) => {
+  const { token } = req.params;
+  const { newPassword } = req.body;
+
+  try {
+    // Verify the reset token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const { resetToken } = decoded;
+
+    // Find the user by the token
+    const user = await User.findOne({ resetToken });
+    if (!user) {
+      return res.status(404).json({ message: 'Invalid token' });
+    }
+
+    // Hash the new password
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(newPassword, salt);
+
+    await user.save();
+
+    res.status(200).json({ message: 'Password reset successfully' });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 
 
 

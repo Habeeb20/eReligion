@@ -20,12 +20,12 @@ const Land1 = () => {
           <div className="flex flex-col md:flex-row justify-center mt-8 space-y-4 md:space-y-0 md:space-x-4">
             <input
               type="text"
-              placeholder="Religion"
+              placeholder="Religion e.g christainity, islam"
               className="p-3 rounded-lg border text-gray-800 border-gray-200 bg-white w-full md:w-auto"
             />
             <input
               type="text"
-              placeholder="Location"
+              placeholder="Location e.g Lagos, Abuja"
               className="p-3 rounded-lg border text-gray-800 border-gray-200 bg-white w-full md:w-auto"
             />
             <button className="p-3 bg-indigo-900 text-white rounded-lg w-full md:w-auto">

@@ -1,29 +1,46 @@
 
 import mongoose from 'mongoose';
-const reviewSchema = new mongoose.Schema({
-  comment: String,
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  date: { type: Date, default: Date.now },
-});
-
-const meetingSchema = new mongoose.Schema({
-  firstName: String,
-  lastName: String,
-  email: { type: String, unique: true },
-  password: String,
-  isMinister: Boolean,
-  ministryName: String,
-  religion:String,
-  address: String,
-  state:String,
-  LGA:String,
-  reviews: [reviewSchema], // To store reviews and comments
-  scheduledMeetings: [
+const ministerSchema = new mongoose.Schema({
+  firstname: { type: String, required: true },
+  lastname: { type: String, required: true },
+  ministryname: { type: String, required: true },
+  email:{type: String, required: true},
+  password:{type:String, required: true},
+  bio: { type: String },
+  title: { type: String },
+  religion: { type: String, enum: ['Islam', 'Christianity', 'Traditionalist', 'Buddhist'] },
+  state: { type: String, required: true },
+  localGovtArea: { type: String, required: true },
+  account: {
+    accountName: { type: String },
+    accountNumber: { type: String },
+    bankName: { type: String },
+  },
+  history: [
     {
+      respondent: String,
       date: Date,
-      userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    },
-  ], // To store scheduled meetings for ministers
+      time: String,
+      duration: String,
+    }
+  ],
+  schedule: [
+    {
+      name: String,
+      time: String,
+      date: String
+    }
+  ],
+  gallery: [{ type: String }], // URLs of images
+  profilePicture: { type: String }, // Profile Picture URL
+  reviews: [
+    {
+      user: String,
+      comment: String,
+      date: Date,
+    }
+  ]
 });
 
-export default mongoose.model('Minister', meetingSchema);
+
+export default mongoose.model('Minister', ministerSchema);
