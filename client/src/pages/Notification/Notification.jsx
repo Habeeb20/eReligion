@@ -23,7 +23,7 @@ const Notification = ({ userId }) => {
 
   return (
     <div className="notification-container">
-      <h2 className="text-2xl font-bold">Notifications</h2>
+      <h2 className="text-base text-green-500 font-bold">Notifications</h2>
       <ul className="list-disc">
         {notifications.map((notif, index) => (
           <li key={index} className="p-2 border-b border-gray-300">

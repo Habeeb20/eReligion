@@ -3,7 +3,9 @@ import axios from 'axios';
 import im from "../../assets/img3.png";
 import toast from 'react-hot-toast';
 import AllMinister from '../ministers/AllMinisters';
-
+import ScheduleComponent from '../ScheduleComponent';
+import MeetingScheduler from '../Meeting/MeetingScheduler';
+import { Link } from 'react-router-dom';
 
 const Profile = ({userId}) => {
   const [activeSection, setActiveSection] = useState('general');
@@ -190,7 +192,10 @@ const Profile = ({userId}) => {
               disabled={!isEditing.general}
               className="w-full p-3 border border-gray-300 rounded-md mb-4"
             />
-            <AllMinister />
+            {/* <AllMinister /> */}
+            {/* <ScheduleComponent /> */}
+            <MeetingScheduler />
+            <Link to='/chatlogin'><button>View chat</button></Link>
             
             
             <button

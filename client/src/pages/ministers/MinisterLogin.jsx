@@ -22,7 +22,7 @@ const MinisterLogin = () => {
       const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/minister/login`, formData);
       console.log(res.data);
       toast.success('Login successful');
-      navigate('/minister/:id'); 
+      navigate('/minister/profile'); 
     } catch (error) {
       console.log(error);
       toast.error("Login failed");

@@ -99,9 +99,13 @@ export const getMinisters = async (req, res) => {
 
 // Get Minister by ID
 export const getMinisterById = async (req, res) => {
-  const { id } = req.params;
+
   try {
-    const minister = await Minister.findById(id);
+    const ministerId = req.user.id;
+    const minister = await Minister.findById(ministerId).select('-password');
+    if(!minister){
+      return res.status(404).json({message: 'user not found'})
+    }
     res.status(200).json(minister);
   } catch (error) {
     res.status(400).json({ error: error.message });

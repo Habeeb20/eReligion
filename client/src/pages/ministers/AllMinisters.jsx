@@ -107,9 +107,9 @@ const AllMinister = () => {
           {ministers.length > 0 ? (
             ministers.map(minister => (
               <div key={minister._id} className="border p-4 rounded shadow">
-                <h2 className="text-xl font-semibold">
-                  {minister.title} {minister.firstname} {minister.lastname}
-                </h2>
+                <h5 className="text-base font-semibold">
+                  {minister.title} {minister.firstname} {minister.lastname} <br /> {minister.email}
+                </h5>
                 <p>{minister.ministryname}</p>
                 <Link to={`/minister/${minister._id}/appointment`} className="text-blue-500">Book an Appointment</Link>
               </div>
