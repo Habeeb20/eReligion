@@ -4,7 +4,7 @@ import Register from './pages/users/Register'
 import Profile from './pages/users/Profile'
 import Navbar from './component/Navbar'
 import Home from './pages/Home'
-import { useNavigate,Navigate } from 'react-router-dom'
+import { useNavigate, Navigate } from 'react-router-dom'
 import ForgotPassword from './pages/users/ForgotPassword'
 import ResetPassword from './pages/users/ResetPassword'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -31,11 +31,13 @@ import { useAuthContext } from './context/AuthContext'
 import SignUp from "./pages/SignUp"
 import ChatLogin from "./pages/Login"
 import ChatHome from './pages/ChatHome'
+import VideoMeetingApp from './component/VideoMeeting/VideoMeetingApp'
+
 
 const socket = io(import.meta.env.VITE_BACKEND_URL)
 const App = () => {
- 
-  const {authUser} = useAuthContext()
+
+  const { authUser } = useAuthContext()
   useEffect(() => {
     socket.on('connect', () => {
       console.log('Connected to socket.io server');
@@ -58,8 +60,8 @@ const App = () => {
     <BrowserRouter>
       <Navbar />
       <Routes>
-      <Route path="/" element={< Home/>} />
-      <Route path="/religion" element={<Religion />} />
+        <Route path="/" element={< Home />} />
+        <Route path="/religion" element={<Religion />} />
         <Route path='/login' element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
@@ -67,12 +69,13 @@ const App = () => {
         <Route path="/ministerregister" element={<MinisterRegister />} />
         <Route path="/minister/profile" element={<MinisterProfile />} />
         <Route path='/min-forgot-password' element={<MinisterForgotPassword />} />
-        <Route path='/forgot-password' element={<ForgotPassword />}/>
+        <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path='/reset-password/:token' element={<ResetPassword />} />
         <Route path='/min-reset-password/:token' element={<ResetPassword />} />
         <Route path='/minister/:id' element={<MinisterDetails />} />
         <Route path='/minister/:id/appointment' element={<Appointment />} />
         <Route path="/schedule" element={<Schedule />} />
+        {/* <Route path='/video' element={<VideoMeetingApp />}/> */}
 
 
         //chat
@@ -82,12 +85,12 @@ const App = () => {
         />
 
 
-<Route
+        <Route
           path="/chatlogin"
           element={authUser ? <Navigate to={"/chat"} /> : <ChatLogin />}
         />
 
-<Route
+        <Route
           path="/chatsignup"
           element={authUser ? <Navigate to={"/chat"} /> : <SignUp />}
         />
@@ -96,7 +99,7 @@ const App = () => {
       </Routes>
       <Toaster />
     </BrowserRouter>
-  
+
   )
 }
 

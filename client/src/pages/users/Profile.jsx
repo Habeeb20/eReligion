@@ -192,7 +192,7 @@ const Profile = ({userId}) => {
               disabled={!isEditing.general}
               className="w-full p-3 border border-gray-300 rounded-md mb-4"
             />
-            {/* <AllMinister /> */}
+            <AllMinister />
             {/* <ScheduleComponent /> */}
             <MeetingScheduler />
             <Link to='/chatlogin'><button>View chat</button></Link>

@@ -20,6 +20,10 @@ import messageRoute from "./routes/chat/messageRoute.js"
 import userChatRoute from "./routes/chat/userChatRoute.js"
 dotenv.config();
 
+
+//meeting
+
+import generateToken from './middleware/MeetinToken.js';
 const __dirname = path.resolve();
 // const app = express();
 // const server = http.createServer(app);
@@ -76,6 +80,21 @@ app.put('/api/appointments/:appointmentId', updateAppointment)
 app.use("/chat/auth", authRoute)
 app.use("/chat/messages", messageRoute)
 app.use("/chat/users", userChatRoute)
+
+app.get("/get-token", (req, res) => {
+  const apiKey = process.env.API_KEY;
+  const secretKey = process.env.SECRET_KEY;
+  const token = generateToken(apiKey, secretKey, { role: "host" });
+  res.json({ token });
+});
+
+app.get("/create-meeting", (req, res) => {
+  const meetingId = generateMeetingId();
+  res.json({ meetingId });
+});
+
+
+
 // Database connection
 const startServer = async () => {
   try {
