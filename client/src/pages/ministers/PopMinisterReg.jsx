@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import user from "../../assets/user.png";
 import backgroundImage from "../../assets/religion/edited.png"; 
 
-const PopupNotification = () => {
+const PopMinisterReg= () => {
   const navigate = useNavigate();
 
   // Handlers for buttons
@@ -12,7 +12,7 @@ const PopupNotification = () => {
   };
 
   const handlePrevPage = () => {
-    navigate("/choice");
+    navigate("/previous-page");
   };
 
   return (
@@ -31,29 +31,29 @@ const PopupNotification = () => {
           alt="More Info"
           className="w-12 h-12 mx-auto mb-4"
         />
-        <h2 className="text-2xl font-bold text-gray-800 mb-2">Book an appointment?</h2>
+        <h2 className="text-2xl font-bold text-gray-800 mb-2">Become a Minister of God?</h2>
         <p className="text-gray-600 mb-4">
-         please be informed that you are meant to pay certain amount before having an appointment with a minister of God
+         please read through our agrrement of policy so as to understand our model
         </p>
 
         <div className="flex justify-around">
-          <Link to='/'>
+          <Link to='/policy'>
           <button
             className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300"
             onClick={handleNextPage}
           >
-            Proceed
+            Policy
           </button>
           </Link>
 
-          <Link to='/choice'>
+          {/* <Link to='/choice'>
           <button
             className="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 transition duration-300"
             onClick={handlePrevPage}
           >
             Cancel
           </button>
-          </Link>
+          </Link> */}
         
       
         </div>
@@ -62,4 +62,4 @@ const PopupNotification = () => {
   );
 };
 
-export default PopupNotification;
+export default PopMinisterReg;

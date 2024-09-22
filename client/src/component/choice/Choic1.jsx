@@ -4,6 +4,7 @@ import useravatar from "../../assets/user.png";
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import CountUp from 'react-countup';
+import { Link } from 'react-router-dom';
 
 const Choic1 = () => {
   const [formData, setFormData] = useState({
@@ -120,11 +121,11 @@ const Choic1 = () => {
             </h2>
 
             <div className="flex justify-center mt-6 space-x-4">
-              <button className="bg-indigo-600 text-white px-6 py-3 rounded-lg">Our Top Pick</button>
-              <button className="bg-yellow-300 text-blue-900 px-6 py-3 rounded-lg">Regular Ministries</button>
-              <button className="bg-yellow-300 text-blue-900 px-6 py-3 rounded-lg">Most Popular</button>
+              <button className="bg-indigo-800 text-white px-7 py-3 rounded-lg">Our Top Pick</button>
+              <button className="bg-white text-blue-900 px-6 py-3 rounded-lg">Regular Ministries</button>
+              <button className="bg-white text-blue-900 px-6 py-3 rounded-lg">Most Popular</button>
               <div className="bg-gray-100 text-blue-900 px-6 py-3 rounded-lg">
-                <CountUp end={filteredMinisters.length} duration={2} />
+                <CountUp end={filteredMinisters.length} duration={2}  /> religious leader
               </div>
             </div>
 
@@ -145,7 +146,7 @@ const Choic1 = () => {
 
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredMinisters.map((minister) => (
-                <div key={minister.id} className="bg-white p-4 rounded-lg shadow-md">
+                <div key={minister.id} className="bg-yellow-100 p-4 rounded-lg shadow-md border border-gray-300">
                   <img
                     src={minister.profilePic || useravatar}
                     alt={minister.firstName}
@@ -160,9 +161,12 @@ const Choic1 = () => {
                   <p className="text-center text-gray-600">Religion: {minister.religion}</p>
                   <p className="text-center text-gray-600">State: {minister.state}</p>
                   <p className="text-center text-gray-600">Local Govt Area: {minister.localGovtArea}</p>
+                  <Link to='/popupchoice'>
                   <button className="mt-4 bg-blue-900 text-white px-4 py-2 rounded-lg w-full">
                     Book Appointment
                   </button>
+                  </Link>
+                
                 </div>
               ))}
             </div>

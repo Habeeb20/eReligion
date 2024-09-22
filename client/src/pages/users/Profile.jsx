@@ -6,6 +6,7 @@ import AllMinister from '../ministers/AllMinisters';
 
 import MeetingScheduler from '../Meeting/MeetingScheduler';
 import { Link } from 'react-router-dom';
+import UserChat from '../Chat/UserChat';
 
 const Profile = ({userId}) => {
   const [activeSection, setActiveSection] = useState('general');
@@ -195,6 +196,7 @@ const Profile = ({userId}) => {
             {/* <AllMinister /> */}
             {/* <ScheduleComponent /> */}
             {/* <MeetingScheduler /> */}
+            {/* <UserChat /> */}
             <Link to='/chatlogin'><button className='px-8'>View chat</button></Link>
             <Link to='/choice'><button>Choice</button></Link>
             

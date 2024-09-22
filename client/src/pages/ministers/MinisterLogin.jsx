@@ -81,7 +81,7 @@ const MinisterLogin = () => {
                    <h4 className='p-3 hover:text-indigo-800'>Forgot Password?</h4>
                  </Link>
                  
-                 <Link to='/ministerregister'><h4 className='p-3 hover:text-indigo-800'>Don't have an account? sign up</h4></Link>
+                 <Link to='/popminister'><h4 className='p-3 hover:text-indigo-800'>Don't have an account? sign up</h4></Link>
                  <Link to='/login'><h4 className='p-3 hover:text-indigo-500'>Log in as a user/follower?</h4></Link>
       </form>
      

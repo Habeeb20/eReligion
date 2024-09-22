@@ -33,6 +33,9 @@ import ChatLogin from "./pages/Login"
 import ChatHome from './pages/ChatHome'
 import PopupNotification from './component/choice/PopupNotification'
 import Choic1 from './component/choice/Choic1'
+import MeetingStep from './pages/Meeting/MeetingStep'
+import PolicyPage from './component/choice/PolicyPage'
+import PopMinisterReg from './pages/ministers/PopMinisterReg'
 
 
 
@@ -81,7 +84,9 @@ const App = () => {
         <Route path='/choice' element={<Choic1 />} />
      
         <Route path="/minister/:id" element={<MinisterGridDetails />} />
-   
+        <Route path='/meetingstep' element={<MeetingStep />} />
+        <Route path='/policy' element={<PolicyPage />} />
+        <Route path='popminister' element={<PopMinisterReg />} />
         {/* <Route path='/video' element={<VideoMeetingApp />}/> */}
         <Route path='/video' element={<VideoCall />} />
 
