@@ -1,4 +1,5 @@
 import React from 'react';
+import MinisterCount from './MinisterCount';
 
 const Land3 = () => {
   const videos = [
@@ -10,6 +11,8 @@ const Land3 = () => {
 
   return (
     <div className="bg-[#FAF3DD] p-6">
+      <MinisterCount />
+
       {/* Section Title */}
       <h2 className="text-[#0A0344] text-xl text-center mb-6">
         We are majorly known for these 4 things... as we are a professional community as well

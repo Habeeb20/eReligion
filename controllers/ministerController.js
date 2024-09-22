@@ -112,6 +112,31 @@ export const getMinisterById = async (req, res) => {
   }
 };
 
+//countleaders
+ export const getleaderscounts = async (req, res) => {
+  try {
+    const {state} = req.query;
+    if(!state || !Array.isArray(state)){
+      console.log("an error is here")
+      return res.status(400).json({message: "state query parameter must be an array of strings"})
+    }
+
+    const counts = await Promise.all(state.map(async(sta)=> {
+      const count = await Minister.countDocuments({
+        state:{$regex: sta, $options: 'i'}
+      });
+      return {state: sta, count}
+    }))
+
+    res.json(counts);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+
+ }
+
+
 
 // Add Review
 export const addReview = async (req, res) => {

@@ -47,7 +47,8 @@ const useLogin = () => {
 
       setAuthUser(data)
     } catch (error) {
-      toast.error(error.message)
+      console.log(error)
+      toast.error("incorrect credentials")
     } finally {
       setLoading(false)
     }

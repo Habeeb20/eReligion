@@ -4,6 +4,7 @@ import im1 from '../assets/religion/image (1).png';
 import im2 from '../assets/religion/image (2).png';
 import im3 from '../assets/religion/image (3).png';
 import im from '../assets/religion/Container (1).png'
+import Land14 from './Land14';
 
 const ministers = [
   {
@@ -75,6 +76,7 @@ const MinisterCard = ({ minister }) => {
 const Land5 = () => {
   return (
     <div className="bg-gray-100 min-h-screen py-12 px-4 md:px-8">
+      
       <div className="max-w-7xl mx-auto text-center mb-12">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
           QUICKLY CONNECT

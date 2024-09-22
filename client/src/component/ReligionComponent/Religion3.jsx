@@ -1,28 +1,41 @@
 import React from "react";
-
+import im from '../../assets/religion/Rectangle 419.png'
 const Religion3 = () => {
   return (
     <div className="bg-gray-100 min-h-screen py-10 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden mb-8">
-          <img
-            src="https://via.placeholder.com/1200x400"
-            alt="Student Discount"
-            className="w-full h-64 object-cover"
-          />
-          <div className="p-6">
-            <h1 className="text-4xl font-bold text-indigo-800">
+        <div className="bg-cream py-8">
+      {/* Container for responsiveness and centering */}
+      <div className="max-w-6xl mx-auto px-4">
+        {/* Main Section with image and text */}
+        <div className="bg-cream shadow-lg rounded-lg overflow-hidden flex flex-col md:flex-row">
+          
+          {/* Image Section */}
+          <div className="md:w-1/2">
+            <img
+              src={im}
+              alt="Student Discount"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Text Section */}
+          <div className="p-8 flex flex-col justify-center md:w-1/2 bg-cream">
+            <h1 className="text-3xl md:text-4xl font-bold text-indigo-900">
               Students Wooping Discount
             </h1>
-            <p className="text-gray-600 mt-2">
+            <p className="text-gray-700 mt-4">
               Travel to anywhere in the world at the best discount possible by being a student
             </p>
-            <button className="bg-indigo-600 text-white px-6 py-2 mt-4 rounded-md hover:bg-indigo-700">
+            <button className="bg-indigo-600 text-white px-6 py-3 mt-6 rounded-md hover:bg-indigo-700">
               Book now
             </button>
           </div>
         </div>
+      </div>
+    </div>
+      
 
         {/* Main Content Section */}
         <div className="bg-white shadow-lg rounded-lg p-6 mb-8">

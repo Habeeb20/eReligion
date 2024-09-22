@@ -6,7 +6,7 @@ const Religion1 = () => {
       {/* Section 1: Main Title and Text */}
       <div className="flex flex-col lg:flex-row justify-between items-center mb-12">
         <div className="lg:w-1/2 text-left">
-          <h1 className="text-3xl lg:text-3xl font-bold text-blue-900 mb-6">
+          <h1 className="text-2xl lg:text-2xl font-bold text-blue-900 mb-6 mt-4">
             Religions in Africa is our source of connection. We have average 4 religions in Africa
           </h1>
           <p className="text-lg text-gray-700 mb-6">

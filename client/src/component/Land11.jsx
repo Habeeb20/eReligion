@@ -1,5 +1,8 @@
 import React from "react";
-
+import im from '../assets/religion/Rectangle 406 (1).png'
+import im1 from '../assets/religion/Rectangle 408 (1).png'
+import im2 from '../assets/religion/Rectangle 409 (2).png'
+import im3 from '../assets/religion/Rectangle 410 (1).png'
 const Land11 = () => {
   return (
     <div className="bg-yellow-50 min-h-screen p-8">
@@ -11,12 +14,12 @@ const Land11 = () => {
         {/* Left Section */}
         <div className="relative">
           <img
-            src="https://via.placeholder.com/800x400"
+            src={im}
             alt="Main Hotel"
             className="w-full h-full object-cover rounded-lg"
           />
           <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center text-white p-6">
-            <h2 className="text-4xl font-bold mb-2">Thousands of 5-star reviews</h2>
+            {/* <h2 className="text-4xl font-bold mb-2">Thousands of 5-star reviews</h2> */}
             <p className="text-lg mb-4">Thanks to our first-class quality and great value fares...</p>
             <button className="bg-blue-900 text-white px-6 py-3 rounded-md font-semibold">Book now</button>
           </div>
@@ -38,22 +41,22 @@ const Land11 = () => {
       {/* Image Grid Section */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <img
-          src="https://via.placeholder.com/400x400"
+          src={im1}
           alt="Image 1"
           className="w-full h-56 object-cover rounded-lg"
         />
         <img
-          src="https://via.placeholder.com/400x400"
+          src={im3}
           alt="Image 2"
           className="w-full h-56 object-cover rounded-lg"
         />
         <img
-          src="https://via.placeholder.com/400x400"
+          src={im2}
           alt="Image 3"
           className="w-full h-56 object-cover rounded-lg"
         />
         <img
-          src="https://via.placeholder.com/400x400"
+          src={im}
           alt="Image 4"
           className="w-full h-56 object-cover rounded-lg"
         />

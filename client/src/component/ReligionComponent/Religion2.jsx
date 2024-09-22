@@ -1,89 +1,78 @@
-import React from 'react';
+import { useSwipeable } from 'react-swipeable';
+import { useState, useEffect } from 'react';
+import user from "../../assets/user.png"
+import axios from "axios"
+const Religion2 = () => {
+  const [ministers, setMinisters] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-const Ministers = [
-  {
-    name: "Pst. James Johnson",
-    church: "Body of Christ Church",
-    imageUrl: "https://via.placeholder.com/150", // Replace with actual image URLs
-  },
-  {
-    name: "Pst. James Johnson",
-    church: "Body of Christ Church",
-    imageUrl: "https://via.placeholder.com/150",
-  },
-  {
-    name: "Pst. James Johnson",
-    church: "Body of Christ Church",
-    imageUrl: "https://via.placeholder.com/150",
-  },
-  {
-    name: "Pst. James Johnson",
-    church: "Body of Christ Church",
-    imageUrl: "https://via.placeholder.com/150",
-  },
-];
+  useEffect(() => {
+    const fetchMinisters = async () => {
+      try {
+        const response = await axios.get('http://localhost:9000/api/minister/ministers');
+        const allMinisters = response.data;
 
-const ReligionSection = ({ title, description }) => (
-  <div className="bg-white p-6 rounded-lg shadow-md mb-8">
-    <h2 className="text-xl font-bold mb-4 text-blue-800">{title}</h2>
-    <p className="text-gray-700 mb-6">{description}</p>
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-      <div className="bg-gray-200 h-32"></div>
-      <div className="bg-gray-200 h-32"></div>
-      <div className="bg-gray-200 h-32"></div>
-    </div>
-    <h3 className="text-lg font-semibold mb-4">Icons in this religion</h3>
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {Ministers.map((minister, index) => (
-        <div key={index} className="bg-white rounded-lg shadow-md p-4">
-          <img
-            src={minister.imageUrl}
-            alt={minister.name}
-            className="w-full h-40 object-cover rounded-md mb-4"
-          />
-          <h4 className="font-bold text-gray-800 text-center">{minister.name}</h4>
-          <p className="text-sm text-center text-gray-600">{minister.church}</p>
-        </div>
-      ))}
-    </div>
-  </div>
-);
+        const christianMinisters = allMinisters.filter(minister =>
+          minister.religion.toLowerCase() === 'christian' || 
+          minister.religion.toLowerCase() === 'christianity'
+        );
 
-const Religion2 = () => (
-  <div className="bg-white p-6 rounded-lg shadow-md mb-8">
-    <h3 className="text-lg font-semibold mb-4">Icons in this religion</h3>
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {Ministers.map((minister, index) => (
-        <div key={index} className="bg-white rounded-lg shadow-md p-4">
-          <img
-            src={minister.imageUrl}
-            alt={minister.name}
-            className="w-full h-40 object-cover rounded-md mb-4"
-          />
-          <h4 className="font-bold text-gray-800 text-center">{minister.name}</h4>
-          <p className="text-sm text-center text-gray-600">{minister.church}</p>
-        </div>
-      ))}
-    </div>
-    <button className="bg-indigo-600 text-white py-2 px-6 rounded-md mt-4 block mx-auto hover:bg-indigo-500">
-      Contact a Christian Minister
-    </button>
-  </div>
-);
+        setMinisters(christianMinisters);
+        setLoading(false);
+      } catch (err) {
+        console.log(err)
+        setError('Error fetching data');
+        setLoading(false);
+      }
+    };
 
-const App = () => {
+    fetchMinisters();
+  }, []);
+
+  const handlers = useSwipeable({
+    onSwipedLeft: () => setActiveIndex((prev) => Math.min(prev + 1, ministers.length - 1)),
+    onSwipedRight: () => setActiveIndex((prev) => Math.max(prev - 1, 0)),
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+  });
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   return (
-    <div className="bg-gray-100 min-h-screen p-4 md:p-8">
-      {/* Minister Section */}
-      <MinisterSection />
-
-      {/* Muslim Section */}
-      <ReligionSection
-        title="Muslim"
-        description="Connect with over 100000 ministers worldwide from the comfort of your home and meet with genuine Men of God Connect with over 100000 ministers worldwide from the comfort of your home and meet with genuine Men of God."
-      />
+    <div className="bg-white p-6 rounded-lg shadow-md mb-8" {...handlers}>
+      <h3 className="text-lg font-semibold mb-4">Icons in Christianity</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {ministers.map((minister, index) => (
+          <div
+            key={index}
+            className={`bg-white rounded-lg shadow-md p-4 ${activeIndex === index ? 'block' : 'hidden'} sm:block`}
+          >
+            <img
+              src={user}
+              alt={minister}
+              className="w-full h-40 object-cover rounded-md mb-4 font-base"
+            />
+            <h4 className="font-bold text-gray-800 text-center">{minister.title} {minister.firstname}</h4>
+            <p className="text-sm text-center text-gray-600">{minister.ministryname}</p>
+          </div>
+        ))}
+      </div>
+      <button
+        onClick={() => window.location.href = '/login'}
+        className="bg-indigo-600 text-white py-2 px-6 rounded-md mt-4 block mx-auto hover:bg-indigo-500"
+      >
+        Contact a Christian Minister
+      </button>
     </div>
   );
 };
 
-export default Religion2;
+export default Religion2

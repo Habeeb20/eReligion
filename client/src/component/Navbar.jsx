@@ -1,9 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import im from "../assets/religion/Frame 442.png"
 
 const Navbar = () => {
   const [activePage, setActivePage] = useState('Home');
   const [isOpen, setIsOpen] = useState(false);
+
+  // useEffect(() => {
+  //   const slider = document.getElementById('flag-slider');
+  //   let flagOffset = 0;
+
+  //   const slideFlags = () => {
+  //     flagOffset += 1;
+  //     if (flagOffset >= slider.scrollWidth / 2) {
+  //       flagOffset = 0;
+  //     }
+  //     slider.style.transform = `translateX(-${flagOffset}px)`;
+  //   };
+
+  //   const interval = setInterval(slideFlags, 40);
+  //   return () => clearInterval(interval);
+  // }, []);
+
 
   const navItems = [
     { name: 'Home', link: '/' },
@@ -15,7 +33,8 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-indigo-900 text-white fixed top-0 w-full z-50 shadow-lg ">
+    <>
+     <nav className="bg-indigo-900 text-white fixed top-0 w-full z-50 shadow-lg ">
       <div className="container mx-auto flex justify-between items-center py-1 px-6">
         <h1 className="text-2xl font-bold text-white">e-religion</h1>
 
@@ -74,7 +93,15 @@ const Navbar = () => {
           ))}
         </div>
       )}
+    
     </nav>
+
+   
+    
+
+
+    </>
+   
   );
 };
 

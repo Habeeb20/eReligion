@@ -1,5 +1,5 @@
 import express from "express"
-import { registerMinister, addReview, getMinisterById, updateProfile, forgotPassword, resetPassword, bookAppointment, videoCallHistory, getMinisters, login } from "../controllers/ministerController.js";
+import { registerMinister, addReview, getMinisterById, updateProfile, forgotPassword, resetPassword, bookAppointment, videoCallHistory, getMinisters, login, getleaderscounts } from "../controllers/ministerController.js";
 import { verifyToken } from "./userRoute.js";
 
 const router = express.Router();
@@ -12,6 +12,7 @@ router.get('/ministers', getMinisters);
 router.get('/profile', verifyToken, getMinisterById)
 router.get('/minister/:id', verifyToken, getMinisterById);
 router.post('/minister/:id/review', addReview);
+router.get('/ministercount', getleaderscounts );
 
 // Appointments
 router.post('/minister/:id/appointment', bookAppointment);

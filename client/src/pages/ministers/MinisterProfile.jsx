@@ -329,7 +329,7 @@ import { useNavigate } from 'react-router-dom';
 import im from "../../assets/religion/minister.png";
 import Notification from '../Notification/Notification';
 import Meeting from '../Meeting/Meeting';
-import ScheduleLink from '../ScheduleLink';
+
 
 const MinisterProfile = () => {
   const [profile, setProfile] = useState(null);
@@ -440,7 +440,7 @@ const MinisterProfile = () => {
         <h2 className="text-3xl font-semibold text-blue-900 text-center mb-6">Profile</h2>
         <Notification />
         <Meeting user={user} />
-        <ScheduleLink />
+       
 
         {error && <p className="text-red-500 text-center">{error}</p>}
         {success && <p className="text-green-500 text-center">{success}</p>}

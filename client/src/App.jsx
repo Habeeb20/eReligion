@@ -16,13 +16,13 @@ import MinisterProfile from './pages/ministers/MinisterProfile'
 import Appointment from './pages/ministers/Appointment'
 import MinisterDetails from './pages/ministers/MinisterDetails'
 import VideoCall from './pages/VideoCall/VideoCall'
-import VideoCallHistory from './pages/VideoCall/VideoCallHistory'
+
 import { io } from 'socket.io-client'
 import { useEffect, useState } from 'react'
 import './index.css'
 import Religion from './pages/Religion'
-import Schedule from './pages/Schedule'
 
+import MinisterGridDetails from './component/MinisterGridDetails'
 
 //chat
 
@@ -31,7 +31,10 @@ import { useAuthContext } from './context/AuthContext'
 import SignUp from "./pages/SignUp"
 import ChatLogin from "./pages/Login"
 import ChatHome from './pages/ChatHome'
-import VideoMeetingApp from './component/VideoMeeting/VideoMeetingApp'
+import PopupNotification from './component/choice/PopupNotification'
+import Choic1 from './component/choice/Choic1'
+
+
 
 
 const socket = io(import.meta.env.VITE_BACKEND_URL)
@@ -72,10 +75,15 @@ const App = () => {
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path='/reset-password/:token' element={<ResetPassword />} />
         <Route path='/min-reset-password/:token' element={<ResetPassword />} />
-        <Route path='/minister/:id' element={<MinisterDetails />} />
+        {/* <Route path='/minister/:id' element={<MinisterDetails />} /> */}
         <Route path='/minister/:id/appointment' element={<Appointment />} />
-        <Route path="/schedule" element={<Schedule />} />
+        <Route path='/popupchoice' element={<PopupNotification />} />
+        <Route path='/choice' element={<Choic1 />} />
+     
+        <Route path="/minister/:id" element={<MinisterGridDetails />} />
+   
         {/* <Route path='/video' element={<VideoMeetingApp />}/> */}
+        <Route path='/video' element={<VideoCall />} />
 
 
         //chat

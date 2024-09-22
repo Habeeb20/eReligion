@@ -1,40 +1,41 @@
 import React from 'react';
-import im from '../assets/religion/Container (1).png'
-import im1 from '../assets/religion/Container (2).png'
-import im2 from '../assets/religion/Container (3).png'
-import im3 from '../assets/religion/Container (4).png'
-import im4 from '../assets/religion/Container (5).png'
-import im5 from '../assets/religion/Container.png'
+import im from '../assets/religion/Container (1).png';
+import im1 from '../assets/religion/Container (2).png';
+import im2 from '../assets/religion/Container (3).png';
+import im3 from '../assets/religion/Container (4).png';
+import im4 from '../assets/religion/Container (5).png';
+import im5 from '../assets/religion/Container.png';
+
 const cities = [
   {
     name: 'Lagos Hotels',
     count: '8,496',
-    image: {im},
+    image: im, // Use the image file path directly
   },
   {
     name: 'Abuja Hotels',
     count: '1,189',
-    image: {im1},
+    image: im1,
   },
   {
     name: 'Calabar Hotels',
     count: '887',
-    image:{im2},
+    image: im2,
   },
   {
     name: 'Port-Harcourt Hotels',
     count: '424',
-    image: {im3},
+    image: im3,
   },
   {
     name: 'Owerri Hotels',
     count: '246',
-    image: {im4},
+    image: im4,
   },
   {
     name: 'Uyo Hotels',
     count: '207',
-    image: {im5},
+    image: im5,
   },
 ];
 
@@ -42,7 +43,7 @@ const CityCard = ({ city }) => {
   return (
     <div className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out">
       <img
-        src={city.image}
+        src={city.image} // Ensure the image is correctly referenced
         alt={city.name}
         className="w-full h-full object-cover"
       />
@@ -54,7 +55,7 @@ const CityCard = ({ city }) => {
   );
 };
 
-const Land6 = () => {
+const Land16 = () => {
   return (
     <div className="bg-gray-50 min-h-screen py-12 px-4 md:px-8">
       <div className="max-w-7xl mx-auto text-center mb-12">
@@ -76,4 +77,4 @@ const Land6 = () => {
   );
 };
 
-export default Land6;
+export default Land16;

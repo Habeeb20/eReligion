@@ -3,7 +3,7 @@ import axios from 'axios';
 import im from "../../assets/img3.png";
 import toast from 'react-hot-toast';
 import AllMinister from '../ministers/AllMinisters';
-import ScheduleComponent from '../ScheduleComponent';
+
 import MeetingScheduler from '../Meeting/MeetingScheduler';
 import { Link } from 'react-router-dom';
 
@@ -196,6 +196,7 @@ const Profile = ({userId}) => {
             {/* <ScheduleComponent /> */}
             <MeetingScheduler />
             <Link to='/chatlogin'><button>View chat</button></Link>
+            <Link to='/choice'><button>Choice</button></Link>
             
             
             <button
